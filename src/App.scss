@@ -8,13 +8,14 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  p {
+    font: {
+      family: 'Courier New';
+      weight: bold;
+    }
+  }
 }
 
 .App-link {
   color: #61dafb;
-}
-
-p {
-  font-family: 'Courier New';
-  font-weight: bold;
 }
