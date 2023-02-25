@@ -17,22 +17,34 @@ const StyledTable = styled.table`
   }
 `;
 
-function App() {
-  interface Coordinates {
-    accuracy: number;
-    latitude: number;
-    longitude: number;
-  }
+interface Coordinates {
+  accuracy: number | null;
+  altitude: number | null;
+  altitudeAccuracy: number | null;
+  heading: number | null;
+  latitude: number | null;
+  longitude: number | null;
+  speed: number | null;
+}
 
+function App() {
   const [currentCoords, setCurrentCoords] = useState<Coordinates>({
     accuracy: 0,
+    altitude: 0,
+    altitudeAccuracy: 0,
+    heading: 0,
     latitude: 0,
     longitude: 0,
+    speed: 0,
   });
   const [watchCoords, setWatchCoords] = useState<Coordinates>({
     accuracy: 0,
+    altitude: 0,
+    altitudeAccuracy: 0,
+    heading: 0,
     latitude: 0,
     longitude: 0,
+    speed: 0,
   });
   const [loadingCurrent, setLoadingCurrent] = useState(true);
   const [loadingWatch, setLoadingWatch] = useState(true);
@@ -69,12 +81,28 @@ function App() {
                   <td>{currentCoords.accuracy}</td>
                 </tr>
                 <tr>
+                  <td>altitude</td>
+                  <td>{currentCoords.altitude}</td>
+                </tr>
+                <tr>
+                  <td>altitudeAccuracy</td>
+                  <td>{currentCoords.altitudeAccuracy}</td>
+                </tr>
+                <tr>
+                  <td>heading</td>
+                  <td>{currentCoords.heading}</td>
+                </tr>
+                <tr>
                   <td>latitude</td>
                   <td>{currentCoords.latitude}</td>
                 </tr>
                 <tr>
                   <td>longitude</td>
                   <td>{currentCoords.longitude}</td>
+                </tr>
+                <tr>
+                  <td>speed</td>
+                  <td>{currentCoords.speed}</td>
                 </tr>
               </tbody>
             </StyledTable>
@@ -93,12 +121,28 @@ function App() {
                   <td>{watchCoords.accuracy}</td>
                 </tr>
                 <tr>
+                  <td>altitude</td>
+                  <td>{watchCoords.altitude}</td>
+                </tr>
+                <tr>
+                  <td>altitudeAccuracy</td>
+                  <td>{watchCoords.altitudeAccuracy}</td>
+                </tr>
+                <tr>
+                  <td>heading</td>
+                  <td>{watchCoords.heading}</td>
+                </tr>
+                <tr>
                   <td>latitude</td>
                   <td>{watchCoords.latitude}</td>
                 </tr>
                 <tr>
                   <td>longitude</td>
                   <td>{watchCoords.longitude}</td>
+                </tr>
+                <tr>
+                  <td>speed</td>
+                  <td>{watchCoords.speed}</td>
                 </tr>
               </tbody>
             </StyledTable>
