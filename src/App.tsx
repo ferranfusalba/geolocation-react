@@ -43,7 +43,7 @@ function App() {
       setCurrentCoords(currentPosition.coords);
       setLoadingCurrent(false);
     });
-  }, []);
+  });
 
   useEffect(() => {
     navigator.geolocation.watchPosition((watchPosition) => {
@@ -51,7 +51,7 @@ function App() {
       setWatchCoords(watchPosition.coords);
       setLoadingWatch(false);
     });
-  }, []);
+  });
 
   loadingCurrent === false
     ? console.log("currentCoords", currentCoords)
