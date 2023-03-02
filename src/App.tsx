@@ -101,8 +101,8 @@ function App() {
                   <td>{currentCoords.longitude}</td>
                 </tr>
                 <tr>
-                  <td>speed</td>
-                  <td>{currentCoords.speed}</td>
+                  <td>speed (mps to kmh)</td>
+                  <td>{currentCoords.speed !== null ? currentCoords.speed * 3.6 : currentCoords.speed}</td>
                 </tr>
               </tbody>
             </StyledTable>
@@ -141,8 +141,8 @@ function App() {
                   <td>{watchCoords.longitude}</td>
                 </tr>
                 <tr>
-                  <td>speed</td>
-                  <td>{watchCoords.speed}</td>
+                  <td>speed (mps rounded)</td>
+                  <td>{watchCoords.speed !== null ? Math.round(watchCoords.speed * 100) / 100 : watchCoords.speed}</td>
                 </tr>
               </tbody>
             </StyledTable>
