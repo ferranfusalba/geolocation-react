@@ -92,7 +92,11 @@ function App() {
               </tr>
               <tr>
                 <td>altitude</td>
-                <td>{currentCoords.altitude}</td>
+                <td>
+                  {currentCoords.altitude !== null
+                    ? Math.round(currentCoords.altitude * 100) / 100
+                    : currentCoords.altitude}
+                </td>
               </tr>
               <tr>
                 <td>altitudeAccuracy</td>
@@ -144,7 +148,11 @@ function App() {
               </tr>
               <tr>
                 <td>altitude</td>
-                <td>{watchCoords.altitude}</td>
+                <td>
+                  {watchCoords.altitude !== null
+                    ? Math.round(watchCoords.altitude * 100) / 100
+                    : watchCoords.altitude}
+                </td>
               </tr>
               <tr>
                 <td>altitudeAccuracy</td>
