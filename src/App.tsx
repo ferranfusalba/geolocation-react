@@ -118,6 +118,14 @@ function App() {
                     : currentCoords.speed}
                 </td>
               </tr>
+              <tr>
+                <td>speed (m/s)</td>
+                <td>
+                  {currentCoords.speed !== null
+                    ? Math.round(currentCoords.speed * 100) / 100
+                    : currentCoords.speed}
+                </td>
+              </tr>
             </tbody>
           </StyledTable>
         </div>
@@ -153,6 +161,14 @@ function App() {
               <tr>
                 <td>longitude</td>
                 <td>{watchCoords.longitude}</td>
+              </tr>
+              <tr>
+                <td>speed (km/h)</td>
+                <td>
+                  {watchCoords.speed !== null
+                    ? Math.round((watchCoords.speed * 3.6) * 100) / 100
+                    : watchCoords.speed}
+                </td>
               </tr>
               <tr>
                 <td>speed (m/s)</td>
