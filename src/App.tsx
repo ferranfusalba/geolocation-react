@@ -111,10 +111,10 @@ function App() {
                 <td>{currentCoords.longitude}</td>
               </tr>
               <tr>
-                <td>speed (mps to kmh)</td>
+                <td>speed (km/h)</td>
                 <td>
                   {currentCoords.speed !== null
-                    ? currentCoords.speed * 3.6
+                    ? Math.round((currentCoords.speed * 3.6) * 100) / 100
                     : currentCoords.speed}
                 </td>
               </tr>
@@ -155,7 +155,7 @@ function App() {
                 <td>{watchCoords.longitude}</td>
               </tr>
               <tr>
-                <td>speed (mps rounded)</td>
+                <td>speed (m/s)</td>
                 <td>
                   {watchCoords.speed !== null
                     ? Math.round(watchCoords.speed * 100) / 100
