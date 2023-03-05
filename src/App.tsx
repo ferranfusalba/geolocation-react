@@ -48,108 +48,126 @@ function App() {
   });
   const [loadingCurrent, setLoadingCurrent] = useState(true);
   const [loadingWatch, setLoadingWatch] = useState(true);
+  const options: PositionOptions = {
+    enableHighAccuracy: true,
+    maximumAge: 0,
+  };
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((currentPosition) => {
-      console.log("getCurrentPosition", currentPosition);
-      setCurrentCoords(currentPosition.coords);
+    function success(successCallback: GeolocationPosition) {
+      setCurrentCoords(successCallback.coords);
       setLoadingCurrent(false);
-    });
+    }
+    
+    function error(error: GeolocationPositionError) {
+      console.log("error");
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
   });
 
   useEffect(() => {
-    navigator.geolocation.watchPosition((watchPosition) => {
-      console.log("watchPosition", watchPosition);
-      setWatchCoords(watchPosition.coords);
+    function success(successCallbackWatch: GeolocationPosition) {
+      setWatchCoords(successCallbackWatch.coords);
       setLoadingWatch(false);
-    });
-  });
+    }
+    
+    function error(error: GeolocationPositionError) {
+      console.log("error");
+    }
 
-  loadingCurrent === false
-    ? console.log("currentCoords", currentCoords)
-    : console.log("Loading...");
+    navigator.geolocation.watchPosition(success, error, options);
+  });
 
   return (
     <div className="App">
-        {!loadingCurrent ? (
-          <div>
-            <p>getCurrentPosition</p>
-            <StyledTable>
-              <tbody>
-                <tr>
-                  <td>accuracy</td>
-                  <td>{currentCoords.accuracy}</td>
-                </tr>
-                <tr>
-                  <td>altitude</td>
-                  <td>{currentCoords.altitude}</td>
-                </tr>
-                <tr>
-                  <td>altitudeAccuracy</td>
-                  <td>{currentCoords.altitudeAccuracy}</td>
-                </tr>
-                <tr>
-                  <td>heading</td>
-                  <td>{currentCoords.heading}</td>
-                </tr>
-                <tr>
-                  <td>latitude</td>
-                  <td>{currentCoords.latitude}</td>
-                </tr>
-                <tr>
-                  <td>longitude</td>
-                  <td>{currentCoords.longitude}</td>
-                </tr>
-                <tr>
-                  <td>speed (mps to kmh)</td>
-                  <td>{currentCoords.speed !== null ? currentCoords.speed * 3.6 : currentCoords.speed}</td>
-                </tr>
-              </tbody>
-            </StyledTable>
-          </div>
-        ) : (
-          <p>Loading Current...</p>
-        )}
-        <br />
-        {!loadingWatch ? (
-          <div>
-            <p>watchPosition</p>
-            <StyledTable>
-              <tbody>
-                <tr>
-                  <td>accuracy</td>
-                  <td>{watchCoords.accuracy}</td>
-                </tr>
-                <tr>
-                  <td>altitude</td>
-                  <td>{watchCoords.altitude}</td>
-                </tr>
-                <tr>
-                  <td>altitudeAccuracy</td>
-                  <td>{watchCoords.altitudeAccuracy}</td>
-                </tr>
-                <tr>
-                  <td>heading</td>
-                  <td>{watchCoords.heading}</td>
-                </tr>
-                <tr>
-                  <td>latitude</td>
-                  <td>{watchCoords.latitude}</td>
-                </tr>
-                <tr>
-                  <td>longitude</td>
-                  <td>{watchCoords.longitude}</td>
-                </tr>
-                <tr>
-                  <td>speed (mps rounded)</td>
-                  <td>{watchCoords.speed !== null ? Math.round(watchCoords.speed * 100) / 100 : watchCoords.speed}</td>
-                </tr>
-              </tbody>
-            </StyledTable>
-          </div>
-        ) : (
-          <p>Loading Watch...</p>
-        )}
+      {!loadingCurrent ? (
+        <div>
+          <p>getCurrentPosition</p>
+          <StyledTable>
+            <tbody>
+              <tr>
+                <td>accuracy</td>
+                <td>{currentCoords.accuracy}</td>
+              </tr>
+              <tr>
+                <td>altitude</td>
+                <td>{currentCoords.altitude}</td>
+              </tr>
+              <tr>
+                <td>altitudeAccuracy</td>
+                <td>{currentCoords.altitudeAccuracy}</td>
+              </tr>
+              <tr>
+                <td>heading</td>
+                <td>{currentCoords.heading}</td>
+              </tr>
+              <tr>
+                <td>latitude</td>
+                <td>{currentCoords.latitude}</td>
+              </tr>
+              <tr>
+                <td>longitude</td>
+                <td>{currentCoords.longitude}</td>
+              </tr>
+              <tr>
+                <td>speed (mps to kmh)</td>
+                <td>
+                  {currentCoords.speed !== null
+                    ? currentCoords.speed * 3.6
+                    : currentCoords.speed}
+                </td>
+              </tr>
+            </tbody>
+          </StyledTable>
+        </div>
+      ) : (
+        <p>Loading Current...</p>
+      )}
+      <br />
+      {!loadingWatch ? (
+        <div>
+          <p>watchPosition</p>
+          <StyledTable>
+            <tbody>
+              <tr>
+                <td>accuracy</td>
+                <td>{watchCoords.accuracy}</td>
+              </tr>
+              <tr>
+                <td>altitude</td>
+                <td>{watchCoords.altitude}</td>
+              </tr>
+              <tr>
+                <td>altitudeAccuracy</td>
+                <td>{watchCoords.altitudeAccuracy}</td>
+              </tr>
+              <tr>
+                <td>heading</td>
+                <td>{watchCoords.heading}</td>
+              </tr>
+              <tr>
+                <td>latitude</td>
+                <td>{watchCoords.latitude}</td>
+              </tr>
+              <tr>
+                <td>longitude</td>
+                <td>{watchCoords.longitude}</td>
+              </tr>
+              <tr>
+                <td>speed (mps rounded)</td>
+                <td>
+                  {watchCoords.speed !== null
+                    ? Math.round(watchCoords.speed * 100) / 100
+                    : watchCoords.speed}
+                </td>
+              </tr>
+            </tbody>
+          </StyledTable>
+        </div>
+      ) : (
+        <p>Loading Watch...</p>
+      )}
     </div>
   );
 }
