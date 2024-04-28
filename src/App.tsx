@@ -60,7 +60,7 @@ function App() {
     }
     
     function error(error: GeolocationPositionError) {
-      console.log("error");
+      console.error(error);
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
@@ -73,7 +73,7 @@ function App() {
     }
     
     function error(error: GeolocationPositionError) {
-      console.log("error");
+      console.error(error);
     }
 
     navigator.geolocation.watchPosition(success, error, options);
